@@ -80,14 +80,10 @@ namespace Server
                     options => {
                         options.Transports = HttpTransportType.WebSockets;
                     });
+                routes.MapControllers();
             });
 
             app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
         }
     }
 }
