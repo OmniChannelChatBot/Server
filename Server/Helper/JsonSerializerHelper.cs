@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
 
@@ -8,7 +9,7 @@ namespace Server.Helper
     {
         public static StringContent Serialize<TValue>(TValue value)
         {
-            return new StringContent(JsonSerializer.Serialize(value), Encoding.UTF8, "application/json");
+            return new StringContent(JsonSerializer.Serialize(value), Encoding.UTF8, MediaTypeNames.Application.Json);
         }
 
         public static TValue Deserialize<TValue>(HttpResponseMessage response)
