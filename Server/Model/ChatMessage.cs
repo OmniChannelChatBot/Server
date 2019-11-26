@@ -6,15 +6,6 @@ namespace Server.Model.Chat
 {
     public class ChatMessage
     {
-        public ChatMessage(int chatRoomId, string text, string userName, int userId, Guid userGuid)
-        {
-            ChatRoomId = chatRoomId;
-            Text = text;
-            UserName = userName;
-            UserGuid = userGuid;
-            UserId = userId;
-        }
-
         public Guid Guid { get; set; } = Guid.NewGuid();
 
         public int Id { get; set; }

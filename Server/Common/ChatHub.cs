@@ -18,13 +18,13 @@ namespace Server.Common
         }
 
         /// <summary>
-        /// Send Message
+        /// New user message
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
-        public async Task Send(ChatMessage message)
+        public async Task NewMessage(ChatMessage message)
         {
-            await Clients.All.SendAsync("Send", message, Context.ConnectionId);
+            await Clients.All.SendAsync("MessageReceived", message, Context.ConnectionId);
         }
 
         public override async Task OnConnectedAsync()

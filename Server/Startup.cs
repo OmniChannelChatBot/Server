@@ -28,7 +28,17 @@ namespace Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            services.AddHealthChecks();
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+            {
+                builder
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    //TODO: вынести в настройки
+                    .WithOrigins("http://localhost:3000");
+            }));
+
             services.AddControllers();
 
             services.AddHttpClient();
@@ -56,8 +66,6 @@ namespace Server
                 //TODO: вынести в настройки
                 options.KeepAliveInterval = System.TimeSpan.FromMinutes(1);
             });
-
-            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,19 +79,15 @@ namespace Server
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("CorsPolicy");
             app.UseAuthorization();
 
-            app.UseEndpoints(routes =>
+            app.UseEndpoints(endpoint =>
             {
-                routes.MapHub<ChatHub>("/chat",
-                    options => {
-                        options.Transports = HttpTransportType.WebSockets;
-                    });
-                routes.MapControllers();
+                endpoint.MapHealthChecks("/health");
+                endpoint.MapHub<ChatHub>("/chat", options => options.Transports = HttpTransportType.WebSockets);
+                endpoint.MapControllers();
             });
-
-            app.UseRouting();
         }
     }
 }
