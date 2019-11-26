@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Server.Model.Chat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,28 +11,20 @@ namespace Server.Common
     /// OmniChannel ChatHub.
     /// </summary>
     //[Authorize]
-#pragma warning disable CA1034 // Nested types should not be visible
     public class ChatHub : Hub
-#pragma warning restore CA1034 // Nested types should not be visible
     {
         public ChatHub()
         {
         }
 
         /// <summary>
-        /// Отправка сообщения.
+        /// Send Message
         /// </summary>
-        /// <param name="message">сообщение.</param>
-        /// <param name="userName">кому сообщение.</param>
-        /// <returns>Task.</returns>
-        //public async Task Send(string message, string userName)
-        //{
-        //    await Clients.All.SendAsync("Send", message, userName);
-        //}
-
-        public async Task Send(string message)
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public async Task Send(ChatMessage message)
         {
-            await Clients.All.SendAsync("Receive", message, Context.ConnectionId);
+            await Clients.All.SendAsync("Send", message, Context.ConnectionId);
         }
 
         public override async Task OnConnectedAsync()
