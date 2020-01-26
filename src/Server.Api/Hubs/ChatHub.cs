@@ -1,31 +1,14 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using Server.Model.Chat;
+using Server.Api.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace Server.Common
+namespace Server.Api.Hubs
 {
-    /// <summary>
-    /// OmniChannel ChatHub.
-    /// </summary>
-    //[Authorize]
     public class ChatHub : Hub
     {
-        public ChatHub()
-        {
-        }
-
-        /// <summary>
-        /// New user message
-        /// </summary>
-        /// <param name="message"></param>
-        /// <returns></returns>
-        public async Task NewMessage(ChatMessage message)
-        {
-            await Clients.All.SendAsync("MessageReceived", message, Context.ConnectionId);
-        }
+        public Task NewMessage(ChatMessage message) =>
+            Clients.All.SendAsync("MessageReceived", message, Context.ConnectionId);
 
         public override async Task OnConnectedAsync()
         {
@@ -33,8 +16,7 @@ namespace Server.Common
             // получаем кук name
             if (context.Request.Cookies.ContainsKey("name"))
             {
-                string userName;
-                if (context.Request.Cookies.TryGetValue("name", out userName))
+                if (context.Request.Cookies.TryGetValue("name", out string userName))
                 {
                     //Debug.WriteLine($"name = {userName}");
                 }
