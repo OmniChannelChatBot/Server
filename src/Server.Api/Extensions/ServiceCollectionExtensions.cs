@@ -2,7 +2,8 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Server.Core.Options;
-using Server.Infrastructure.Services;
+using Server.Infrastructure.Services.DBApiService;
+using Server.Infrastructure.Services.OAuthService;
 using System;
 
 namespace Server.Api.Extensions
@@ -19,7 +20,8 @@ namespace Server.Api.Extensions
 
         private static IServiceCollection AddIntergationServices(this IServiceCollection services)
         {
-            services.AddHttpClient<IDbApiServiceClient, DbApiServiceClient>();
+            services.AddHttpClient<IDBApiServiceClient, DBApiServiceClient>();
+            services.AddHttpClient<IOAuthServiceClient, OAuthServiceClient>();
             return services;
         }
 

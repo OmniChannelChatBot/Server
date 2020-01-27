@@ -3,8 +3,7 @@
 namespace Server.Core.Exceptions
 {
     [Serializable]
-    public class UnsupportedMediaTypeException :
-        Exception
+    public class UnsupportedMediaTypeException : ApiException
     {
         public UnsupportedMediaTypeException(string message)
             : base(message)
@@ -12,7 +11,8 @@ namespace Server.Core.Exceptions
         }
 
         public UnsupportedMediaTypeException(string message, object apiProblemDetails)
-            : base(message) =>
-            Data.Add(nameof(apiProblemDetails), apiProblemDetails);
+            : base(message, apiProblemDetails)
+        {
+        }
     }
 }

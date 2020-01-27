@@ -3,7 +3,7 @@
 namespace Server.Core.Exceptions
 {
     [Serializable]
-    public class BadRequestException : Exception
+    public class BadRequestException : ApiException
     {
         public BadRequestException(string message)
             : base(message)
@@ -11,7 +11,8 @@ namespace Server.Core.Exceptions
         }
 
         public BadRequestException(string message, object apiProblemDetails)
-            : base(message) =>
-            Data.Add(nameof(apiProblemDetails), apiProblemDetails);
+            : base(message, apiProblemDetails)
+        {
+        }
     }
 }

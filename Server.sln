@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nswag", "nswag", "{ABA1C818
 	ProjectSection(SolutionItems) = preProject
 		nswag\db-api-schema.nswag = nswag\db-api-schema.nswag
 		nswag\nswag-run.bat = nswag\nswag-run.bat
+		nswag\oauth-schema.nswag = nswag\oauth-schema.nswag
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "overrade-templates", "overrade-templates", "{54050FF3-B086-4E37-BA37-ED24E5B1CAF6}"

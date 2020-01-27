@@ -3,8 +3,7 @@
 namespace Server.Core.Exceptions
 {
     [Serializable]
-    public class BadGatewayException :
-        Exception
+    public class BadGatewayException : ApiException
     {
         public BadGatewayException(string message)
             : base(message)
@@ -12,7 +11,8 @@ namespace Server.Core.Exceptions
         }
 
         public BadGatewayException(string message, object apiProblemDetails)
-            : base(message) =>
-            Data.Add(nameof(apiProblemDetails), apiProblemDetails);
+            : base(message, apiProblemDetails)
+        {
+        }
     }
 }

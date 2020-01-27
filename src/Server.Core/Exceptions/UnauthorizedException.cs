@@ -3,14 +3,14 @@
 namespace Server.Core.Exceptions
 {
     [Serializable]
-    public class NotFoundException : ApiException
+    public class UnauthorizedException : ApiException
     {
-        public NotFoundException(string message)
+        public UnauthorizedException(string message)
             : base(message)
         {
         }
 
-        public NotFoundException(string message, object apiProblemDetails)
+        public UnauthorizedException(string message, object apiProblemDetails)
             : base(message, apiProblemDetails)
         {
         }

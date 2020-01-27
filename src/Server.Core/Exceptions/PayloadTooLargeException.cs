@@ -3,8 +3,7 @@
 namespace Server.Core.Exceptions
 {
     [Serializable]
-    public class PayloadTooLargeException :
-        Exception
+    public class PayloadTooLargeException : ApiException
     {
         public PayloadTooLargeException(string message)
             : base(message)
@@ -12,7 +11,8 @@ namespace Server.Core.Exceptions
         }
 
         public PayloadTooLargeException(string message, object apiProblemDetails)
-            : base(message) =>
-            Data.Add(nameof(apiProblemDetails), apiProblemDetails);
+            : base(message, apiProblemDetails)
+        {
+        }
     }
 }

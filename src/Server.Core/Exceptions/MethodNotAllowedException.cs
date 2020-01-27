@@ -3,8 +3,7 @@
 namespace Server.Core.Exceptions
 {
     [Serializable]
-    public class MethodNotAllowedException :
-       Exception
+    public class MethodNotAllowedException : ApiException
     {
         public MethodNotAllowedException(string message)
             : base(message)
@@ -12,7 +11,8 @@ namespace Server.Core.Exceptions
         }
 
         public MethodNotAllowedException(string message, object apiProblemDetails)
-            : base(message) =>
-            Data.Add(nameof(apiProblemDetails), apiProblemDetails);
+            : base(message, apiProblemDetails)
+        {
+        }
     }
 }

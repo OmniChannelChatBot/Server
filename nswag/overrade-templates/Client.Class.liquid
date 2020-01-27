@@ -14,7 +14,7 @@
     {
 {%     if InjectHttpClient -%}
         _httpClient = httpClient; 
-        _httpClient.BaseAddress = options?.Value?.Url ?? throw new System.ArgumentNullException($"{nameof(DBApiOptions)}.{nameof(options.Value.Url)}");
+        _httpClient.BaseAddress = options?.Value?.Uri ?? throw new System.ArgumentNullException(nameof(options.Value.Uri));
         _jsonSerializerOptions = new System.Text.Json.JsonSerializerOptions
         {
             IgnoreNullValues = true,

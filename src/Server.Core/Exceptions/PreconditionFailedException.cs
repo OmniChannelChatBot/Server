@@ -3,8 +3,7 @@
 namespace Server.Core.Exceptions
 {
     [Serializable]
-    public class PreconditionFailedException :
-        Exception
+    public class PreconditionFailedException : ApiException
     {
         public PreconditionFailedException(string message)
             : base(message)
@@ -12,7 +11,8 @@ namespace Server.Core.Exceptions
         }
 
         public PreconditionFailedException(string message, object apiProblemDetails)
-            : base(message) =>
-            Data.Add(nameof(apiProblemDetails), apiProblemDetails);
+            : base(message, apiProblemDetails)
+        {
+        }
     }
 }

@@ -3,14 +3,14 @@
   "defaultVariables": null,
   "documentGenerator": {
     "fromDocument": {
-      "url": "https://localhost:5002/api-doc/DBApi/swagger.json",
+      "url": "https://localhost:5000/api-doc/OAuth/swagger.json",
       "output": null
     }
   },
   "codeGenerators": {
     "openApiToCSharpClient": {
       "clientBaseClass": null,
-      "configurationClass": "IOptions<DBApiOptions>",
+      "configurationClass": "IOptions<OAuthOptions>",
       "generateClientClasses": true,
       "generateClientInterfaces": true,
       "injectHttpClient": true,
@@ -37,7 +37,7 @@
       "useRequestAndResponseSerializationSettings": false,
       "serializeTypeInformation": false,
       "queryNullValue": "",
-      "className": "DBApiServiceClient",
+      "className": "OAuthServiceClient",
       "operationGenerationMode": "SingleClientFromOperationId",
       "additionalNamespaceUsages": [
         "Microsoft.Extensions.Options",
@@ -56,7 +56,7 @@
       "wrapResponseMethods": [],
       "generateResponseClasses": true,
       "responseClass": null,
-      "namespace": "Server.Infrastructure.Services.DBApiService",
+      "namespace": "Server.Infrastructure.Services.OAuthService",
       "requiredPropertiesMustBeDefined": true,
       "dateType": "System.DateTimeOffset",
       "jsonConverters": null,
@@ -93,7 +93,7 @@
       "enumNameGeneratorType": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "../src/Server.Infrastructure/Services/DBApiService/DBApiServiceClient.cs"
+      "output": "../src/Server.Infrastructure/Services/OAuthService/OAuthServiceClient.cs"
     }
   }
 }

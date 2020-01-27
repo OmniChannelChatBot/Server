@@ -2,9 +2,8 @@
 
 namespace Server.Core.Options
 {
-    public class DBApiOptions
+    public class OAuthOptions
     {
         public Uri Uri { get; set; }
     }
 }
-
