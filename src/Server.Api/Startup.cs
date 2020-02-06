@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OCCBPackage.Extensions;
+using OCCBPackage.Options;
 using OCCBPackage.Swagger.OperationFilters;
 using Server.Api.Extensions;
 using Server.Api.Hubs;
@@ -24,6 +25,7 @@ namespace Server.Api
         {
             services.AddMediatR();
             services.AddCustomHealthChecks();
+            services.AddJwtBearerAuthentication(options => Configuration.GetSection(nameof(AccessTokenOptions)).Bind(options));
             services.AddAutoMapper(typeof(Startup));
             services.AddApplicationServices(options => Configuration.GetSection(nameof(DBApiOptions)).Bind(options));
             services.AddApiServices();
@@ -34,19 +36,16 @@ namespace Server.Api
                     new int[] { 504, 503, 502, 501, 500, 415, 413, 412, 405, 400 });
             });
             services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
-            {
                 builder
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()
-                    .WithOrigins("http://localhost:3000");
-            }));
+                    .WithOrigins("http://localhost:3000")
+            ));
             services.AddSignalR()
                 .AddHubOptions<ChatHub>(options =>
                 {
-                    // расширенные ошибки только для хаба
                     options.EnableDetailedErrors = true;
-
                     //TODO: вынести в настройки
                     options.KeepAliveInterval = TimeSpan.FromMinutes(1);
                 });

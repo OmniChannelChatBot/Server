@@ -42,7 +42,7 @@
       "additionalNamespaceUsages": [
         "Microsoft.Extensions.Options",
         "Server.Core.Options",
-        "Server.Core.Exceptions"
+        "OCCBPackage.Exceptions"
       ],
       "additionalContractNamespaceUsages": [],
       "generateOptionalParameters": true,

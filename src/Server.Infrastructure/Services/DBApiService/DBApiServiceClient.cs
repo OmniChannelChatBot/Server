@@ -6,7 +6,7 @@
 
 using Microsoft.Extensions.Options;
 using Server.Core.Options;
-using Server.Core.Exceptions;
+using OCCBPackage.Exceptions;
 
 #pragma warning disable 108 // Disable "CS0108 '{derivedDto}.ToJson()' hides inherited member '{dtoBase}.ToJson()'. Use the new keyword if hiding was intended."
 #pragma warning disable 114 // Disable "CS0114 '{derivedDto}.RaisePropertyChanged(String)' hides inherited member 'dtoBase.RaisePropertyChanged(String)'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
@@ -151,61 +151,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -257,61 +257,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -365,61 +365,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -468,61 +468,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -574,61 +574,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -682,61 +682,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -788,61 +788,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -892,61 +892,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -994,61 +994,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -1100,61 +1100,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -1206,61 +1206,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -1310,61 +1310,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -1416,61 +1416,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -1522,61 +1522,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -1624,61 +1624,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
@@ -1728,61 +1728,61 @@ namespace Server.Infrastructure.Services.DBApiService
                         if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.GatewayTimeoutException(result.Detail, result);
+                            throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
                         if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ServiceUnavailableException(result.Detail, result);
+                            throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
                         if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadGatewayException(result.Detail, result);
+                            throw new BadGatewayException(result.Detail, result);
                         }
                         else
                         if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.ApiException(result.Detail, result);
+                            throw new ApiException(result.Detail, result);
                         }
                         else
                         if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.UnsupportedMediaTypeException(result.Detail, result);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
                         if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PayloadTooLargeException(result.Detail, result);
+                            throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
                         if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.PreconditionFailedException(result.Detail, result);
+                            throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
                         if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.MethodNotAllowedException(result.Detail, result);
+                            throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
                         if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
-                            throw new Server.Core.Exceptions.BadRequestException(result.Detail, result);
+                            throw new BadRequestException(result.Detail, result);
                         }
                         else
                         if (status_ != 200 && status_ != 204)
