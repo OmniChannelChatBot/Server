@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using OCCBPackage.Exceptions;
 using OCCBPackage.Mvc;
-using Server.Core.Exceptions;
 using System;
 using System.Net.Mime;
 using System.Text.Json;

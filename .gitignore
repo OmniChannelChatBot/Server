@@ -328,3 +328,5 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+/Server/Settings/MessangerSettings.cs
+/Server/Service/VKService.cs
