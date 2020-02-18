@@ -11,7 +11,7 @@ namespace Server.Api.Hubs
     {
         public Task NewChatMessageAsync(ChatMessage chatMessage)
         {
-            var username = this.Context.UserIdentifier;
+            var username = Context.UserIdentifier;
             return Clients.Others.SendAsync("ChatMessageReceived", username, chatMessage);
         }
 

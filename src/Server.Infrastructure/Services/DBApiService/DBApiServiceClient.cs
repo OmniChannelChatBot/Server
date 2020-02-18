@@ -69,7 +69,7 @@ namespace Server.Infrastructure.Services.DBApiService
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Received</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<FindRefreshTokenByTokenQueryResponse> FindRefreshTokenByTokenAsync(string token = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<FindRefreshTokenByTokenQueryResponse> FindRefreshTokenByTokenAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Added</returns>
@@ -127,7 +127,7 @@ namespace Server.Infrastructure.Services.DBApiService
         public async System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyList<GetChatMessageListQueryResponse>> GetChatMessageListAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ChatMessages");
+            urlBuilder_.Append("api/chatmessages");
     
             try
             {
@@ -230,7 +230,7 @@ namespace Server.Infrastructure.Services.DBApiService
         public async System.Threading.Tasks.Task<int> CreateChatMessageAsync(CreateChatMessageCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ChatMessages");
+            urlBuilder_.Append("api/chatmessages");
     
             try
             {
@@ -340,7 +340,7 @@ namespace Server.Infrastructure.Services.DBApiService
             }
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("chat-room/{Guid}");
+            urlBuilder_.Append("api/chatmessages/chat-room/{Guid}");
             urlBuilder_.Replace("{Guid}", System.Uri.EscapeDataString(ConvertToString(guid, System.Globalization.CultureInfo.InvariantCulture)));
     
             try
@@ -444,7 +444,7 @@ namespace Server.Infrastructure.Services.DBApiService
         public async System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyList<GetListChatRoomQueryResponse>> GetChatRoomListAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ChatRooms");
+            urlBuilder_.Append("api/chatrooms");
     
             try
             {
@@ -547,7 +547,7 @@ namespace Server.Infrastructure.Services.DBApiService
         public async System.Threading.Tasks.Task<int> CreateChatRoomAsync(CreateChatRoomCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ChatRooms");
+            urlBuilder_.Append("api/chatrooms");
     
             try
             {
@@ -657,7 +657,7 @@ namespace Server.Infrastructure.Services.DBApiService
             }
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("user/{Id}");
+            urlBuilder_.Append("api/chatrooms/user/{Id}");
             urlBuilder_.Replace("{Id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             try
@@ -761,7 +761,7 @@ namespace Server.Infrastructure.Services.DBApiService
         public async System.Threading.Tasks.Task<int> AddRefreshTokenAsync(AddRefreshTokenCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/RefreshTokens");
+            urlBuilder_.Append("api/refreshtokens");
     
             try
             {
@@ -867,7 +867,7 @@ namespace Server.Infrastructure.Services.DBApiService
         public async System.Threading.Tasks.Task DeleteRefreshTokenAsync(DeleteRefreshTokenCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/RefreshTokens");
+            urlBuilder_.Append("api/refreshtokens");
     
             try
             {
@@ -969,7 +969,7 @@ namespace Server.Infrastructure.Services.DBApiService
         public async System.Threading.Tasks.Task UpdateRefreshTokenAsync(UpdateRefreshTokenCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/RefreshTokens");
+            urlBuilder_.Append("api/refreshtokens");
     
             try
             {
@@ -1068,14 +1068,15 @@ namespace Server.Infrastructure.Services.DBApiService
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Received</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<FindRefreshTokenByTokenQueryResponse> FindRefreshTokenByTokenAsync(string token = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<FindRefreshTokenByTokenQueryResponse> FindRefreshTokenByTokenAsync(string token, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/RefreshTokens?");
-            if (token != null) 
-            {
-                urlBuilder_.Append($"{System.Uri.EscapeDataString("Token")}=").Append(System.Uri.EscapeDataString(ConvertToString(token, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            if (token == null) {
+                throw new System.ArgumentNullException("token");
             }
+    
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append("api/refreshtokens?");
+            urlBuilder_.Append($"{System.Uri.EscapeDataString("Token")}=").Append(System.Uri.EscapeDataString(ConvertToString(token, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             urlBuilder_.Length--;
     
             try
@@ -1179,7 +1180,7 @@ namespace Server.Infrastructure.Services.DBApiService
         public async System.Threading.Tasks.Task<int> AddUserAsync(AddUserCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/Users");
+            urlBuilder_.Append("api/users");
     
             try
             {
@@ -1285,7 +1286,7 @@ namespace Server.Infrastructure.Services.DBApiService
         public async System.Threading.Tasks.Task UpdateUserAsync(UpdateUserCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/Users");
+            urlBuilder_.Append("api/users");
     
             try
             {
@@ -1391,7 +1392,7 @@ namespace Server.Infrastructure.Services.DBApiService
             }
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/Users/{Id}");
+            urlBuilder_.Append("api/users/{Id}");
             urlBuilder_.Replace("{Id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             try
@@ -1411,6 +1412,12 @@ namespace Server.Infrastructure.Services.DBApiService
                         {
                             var result = await ReadContentAsync<GetUserByIdQueryResponse>(response_.Content).ConfigureAwait(false);
                             return result;
+                        }
+                        else
+                        if (status_ == 404) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new NotFoundException(result.Detail, result);
                         }
                         else
                         if (status_ == 504) 
@@ -1499,7 +1506,7 @@ namespace Server.Infrastructure.Services.DBApiService
             }
     
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/Users/{Id}");
+            urlBuilder_.Append("api/users/{Id}");
             urlBuilder_.Replace("{Id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
     
             try
@@ -1598,8 +1605,12 @@ namespace Server.Infrastructure.Services.DBApiService
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public async System.Threading.Tasks.Task<bool> AvailabilityUsernameAsync(string username, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            if (username == null) {
+                throw new System.ArgumentNullException("username");
+            }
+    
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/Users/availability/username/{Username}");
+            urlBuilder_.Append("api/users/availability/username/{Username}");
             urlBuilder_.Replace("{Username}", System.Uri.EscapeDataString(ConvertToString(username, System.Globalization.CultureInfo.InvariantCulture)));
     
             try
@@ -1702,8 +1713,12 @@ namespace Server.Infrastructure.Services.DBApiService
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public async System.Threading.Tasks.Task<FindUserByUsernameQueryResponse> FindUserByUsernameAsync(string username, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
+            if (username == null) {
+                throw new System.ArgumentNullException("username");
+            }
+    
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/Users/username/{Username}");
+            urlBuilder_.Append("api/users/username/{Username}");
             urlBuilder_.Replace("{Username}", System.Uri.EscapeDataString(ConvertToString(username, System.Globalization.CultureInfo.InvariantCulture)));
     
             try
@@ -1857,30 +1872,6 @@ namespace Server.Infrastructure.Services.DBApiService
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class GetChatMessageListQueryResponse 
     {
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class Object 
-    {
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-    
     
     }
     
@@ -1908,9 +1899,6 @@ namespace Server.Infrastructure.Services.DBApiService
         [Newtonsoft.Json.JsonProperty("instance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Instance { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("extensions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.IDictionary<string, Object> Extensions { get; set; }
-    
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
     
         [Newtonsoft.Json.JsonExtensionData]
@@ -1926,75 +1914,30 @@ namespace Server.Infrastructure.Services.DBApiService
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class CreateChatMessageCommand 
     {
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-    
     
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class GetChatMessageListByChatRoomGuidQueryResponse 
     {
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-    
     
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class GetListChatRoomQueryResponse 
     {
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-    
     
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class CreateChatRoomCommand 
     {
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-    
     
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class GetChatRoomByUserIdQueryResponse 
     {
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-    
     
     }
     
@@ -2015,15 +1958,6 @@ namespace Server.Infrastructure.Services.DBApiService
         [Newtonsoft.Json.JsonProperty("remoteIpAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string RemoteIpAddress { get; set; }
     
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-    
     
     }
     
@@ -2032,15 +1966,6 @@ namespace Server.Infrastructure.Services.DBApiService
     {
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Always)]
         public int Id { get; set; }
-    
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
     
     
     }
@@ -2063,15 +1988,6 @@ namespace Server.Infrastructure.Services.DBApiService
         [Newtonsoft.Json.JsonProperty("remoteIpAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string RemoteIpAddress { get; set; }
     
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-    
     
     }
     
@@ -2092,15 +2008,6 @@ namespace Server.Infrastructure.Services.DBApiService
         [Newtonsoft.Json.JsonProperty("expires", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public System.DateTimeOffset Expires { get; set; }
-    
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
     
     
     }
@@ -2135,15 +2042,6 @@ namespace Server.Infrastructure.Services.DBApiService
         [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? Type { get; set; }
     
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-    
     
     }
     
@@ -2164,15 +2062,6 @@ namespace Server.Infrastructure.Services.DBApiService
     
         [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Email { get; set; }
-    
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
     
     
     }
@@ -2203,14 +2092,8 @@ namespace Server.Infrastructure.Services.DBApiService
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Email { get; set; }
     
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
+        [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Always)]
+        public int Type { get; set; }
     
     
     }
@@ -2251,15 +2134,6 @@ namespace Server.Infrastructure.Services.DBApiService
     
         [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Always)]
         public int Type { get; set; }
-    
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-    
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
     
     
     }

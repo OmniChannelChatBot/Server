@@ -17,41 +17,51 @@ using OCCBPackage.Exceptions;
 namespace Server.Infrastructure.Services.OAuthService
 {
     using System = global::System;
-
+    
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.2.2.0 (NJsonSchema v10.1.4.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial interface IOAuthServiceClient
     {
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Sign up</returns>
+        /// <returns>Authentificated</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<int> SignUpAsync(SignUpCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
+        System.Threading.Tasks.Task<AuthentificationCommandResponse> AuthentificationAsync(AuthentificationCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+    
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Sign in</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<SignInCommandResponse> SignInAsync(SignInCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
+        System.Threading.Tasks.Task SignInAsync(SignInCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>Sign up</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task SignUpAsync(SignUpCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+    
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Refreshed</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RefreshAccessTokenCommandResponse> RefreshAccessTokenAsync(RefreshAccessTokenCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
+        System.Threading.Tasks.Task RefreshByCookieAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>Refreshed</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<RefreshCommandResponse> RefreshAsync(RefreshCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+    
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task TestAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
+        System.Threading.Tasks.Task<GetUserQueryResponse> GetUserAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+    
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.2.2.0 (NJsonSchema v10.1.4.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class OAuthServiceClient : IOAuthServiceClient
     {
         private readonly System.Net.Http.HttpClient _httpClient;
         private readonly System.Text.Json.JsonSerializerOptions _jsonSerializerOptions;
-
+    
         public OAuthServiceClient(IOptions<OAuthOptions> options, System.Net.Http.HttpClient httpClient)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClient; 
             _httpClient.BaseAddress = options?.Value?.Uri ?? throw new System.ArgumentNullException(nameof(options.Value.Uri));
             _jsonSerializerOptions = new System.Text.Json.JsonSerializerOptions
             {
@@ -59,16 +69,16 @@ namespace Server.Infrastructure.Services.OAuthService
                 PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase
             };
         }
-
-
+    
+    
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Sign up</returns>
+        /// <returns>Authentificated</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<int> SignUpAsync(SignUpCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<AuthentificationCommandResponse> AuthentificationAsync(AuthentificationCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/Auth/sign-up");
-
+            urlBuilder_.Append("api/auth");
+    
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -78,74 +88,74 @@ namespace Server.Infrastructure.Services.OAuthService
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
+    
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
+    
                     using (var response_ = await _httpClient.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false))
                     {
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
+                        if (status_ == 200) 
                         {
-                            var result = await ReadContentAsync<int>(response_.Content).ConfigureAwait(false);
+                            var result = await ReadContentAsync<AuthentificationCommandResponse>(response_.Content).ConfigureAwait(false);
                             return result;
                         }
                         else
-                        if (status_ == 504)
+                        if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
-                        if (status_ == 503)
+                        if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
-                        if (status_ == 502)
+                        if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new BadGatewayException(result.Detail, result);
                         }
                         else
-                        if (status_ == 501)
+                        if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new ApiException(result.Detail, result);
                         }
                         else
-                        if (status_ == 500)
+                        if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new ApiException(result.Detail, result);
                         }
                         else
-                        if (status_ == 415)
+                        if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
-                        if (status_ == 413)
+                        if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
-                        if (status_ == 412)
+                        if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
-                        if (status_ == 405)
+                        if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
-                        if (status_ == 400)
+                        if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new BadRequestException(result.Detail, result);
@@ -156,8 +166,8 @@ namespace Server.Infrastructure.Services.OAuthService
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException($"HTTP response status code {status_} was not expected", responseData_);
                         }
-
-                        return default(int);
+            
+                        return default(AuthentificationCommandResponse);
                     }
                 }
             }
@@ -166,15 +176,15 @@ namespace Server.Infrastructure.Services.OAuthService
                 throw exception_;
             }
         }
-
+    
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Sign in</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<SignInCommandResponse> SignInAsync(SignInCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task SignInAsync(SignInCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/Auth/sign-in");
-
+            urlBuilder_.Append("api/auth/sign-in");
+    
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
@@ -183,75 +193,73 @@ namespace Server.Infrastructure.Services.OAuthService
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
+    
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
+    
                     using (var response_ = await _httpClient.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false))
                     {
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
+                        if (status_ == 200) 
                         {
-                            var result = await ReadContentAsync<SignInCommandResponse>(response_.Content).ConfigureAwait(false);
-                            return result;
+                            return;
                         }
                         else
-                        if (status_ == 504)
+                        if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
-                        if (status_ == 503)
+                        if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
-                        if (status_ == 502)
+                        if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new BadGatewayException(result.Detail, result);
                         }
                         else
-                        if (status_ == 501)
+                        if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new ApiException(result.Detail, result);
                         }
                         else
-                        if (status_ == 500)
+                        if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new ApiException(result.Detail, result);
                         }
                         else
-                        if (status_ == 415)
+                        if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
-                        if (status_ == 413)
+                        if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
-                        if (status_ == 412)
+                        if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
-                        if (status_ == 405)
+                        if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
-                        if (status_ == 400)
+                        if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new BadRequestException(result.Detail, result);
@@ -262,8 +270,6 @@ namespace Server.Infrastructure.Services.OAuthService
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException($"HTTP response status code {status_} was not expected", responseData_);
                         }
-
-                        return default(SignInCommandResponse);
                     }
                 }
             }
@@ -272,92 +278,190 @@ namespace Server.Infrastructure.Services.OAuthService
                 throw exception_;
             }
         }
-
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>Sign up</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task SignUpAsync(SignUpCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append("api/auth/sign-up");
+    
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _jsonSerializerOptions));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+    
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+    
+                    using (var response_ = await _httpClient.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false))
+                    {
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200) 
+                        {
+                            return;
+                        }
+                        else
+                        if (status_ == 504) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new GatewayTimeoutException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 503) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new ServiceUnavailableException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 502) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new BadGatewayException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 501) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new ApiException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 500) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new ApiException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 415) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 413) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new PayloadTooLargeException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 412) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new PreconditionFailedException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 405) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new MethodNotAllowedException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 400) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new BadRequestException(result.Detail, result);
+                        }
+                        else
+                        if (status_ != 200 && status_ != 204)
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException($"HTTP response status code {status_} was not expected", responseData_);
+                        }
+                    }
+                }
+            }
+            catch (System.Exception exception_)
+            {
+                throw exception_;
+            }
+        }
+    
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Refreshed</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<RefreshAccessTokenCommandResponse> RefreshAccessTokenAsync(RefreshAccessTokenCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task RefreshByCookieAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/Auth/refresh");
-
+            urlBuilder_.Append("api/auth/refresh/cookie");
+    
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _jsonSerializerOptions));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
+                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
+    
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
+    
                     using (var response_ = await _httpClient.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false))
                     {
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
+                        if (status_ == 200) 
                         {
-                            var result = await ReadContentAsync<RefreshAccessTokenCommandResponse>(response_.Content).ConfigureAwait(false);
-                            return result;
+                            return;
                         }
                         else
-                        if (status_ == 504)
+                        if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
-                        if (status_ == 503)
+                        if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
-                        if (status_ == 502)
+                        if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new BadGatewayException(result.Detail, result);
                         }
                         else
-                        if (status_ == 501)
+                        if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new ApiException(result.Detail, result);
                         }
                         else
-                        if (status_ == 500)
+                        if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new ApiException(result.Detail, result);
                         }
                         else
-                        if (status_ == 415)
+                        if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
-                        if (status_ == 413)
+                        if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
-                        if (status_ == 412)
+                        if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
-                        if (status_ == 405)
+                        if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
-                        if (status_ == 400)
+                        if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new BadRequestException(result.Detail, result);
@@ -368,8 +472,6 @@ namespace Server.Infrastructure.Services.OAuthService
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException($"HTTP response status code {status_} was not expected", responseData_);
                         }
-
-                        return default(RefreshAccessTokenCommandResponse);
                     }
                 }
             }
@@ -378,93 +480,207 @@ namespace Server.Infrastructure.Services.OAuthService
                 throw exception_;
             }
         }
-
+    
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>Refreshed</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public async System.Threading.Tasks.Task<RefreshCommandResponse> RefreshAsync(RefreshCommand body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append("api/auth/refresh");
+    
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    var content_ = new System.Net.Http.StringContent(System.Text.Json.JsonSerializer.Serialize(body, _jsonSerializerOptions));
+                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
+                    request_.Content = content_;
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+    
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+    
+                    using (var response_ = await _httpClient.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false))
+                    {
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200) 
+                        {
+                            var result = await ReadContentAsync<RefreshCommandResponse>(response_.Content).ConfigureAwait(false);
+                            return result;
+                        }
+                        else
+                        if (status_ == 504) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new GatewayTimeoutException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 503) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new ServiceUnavailableException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 502) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new BadGatewayException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 501) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new ApiException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 500) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new ApiException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 415) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new UnsupportedMediaTypeException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 413) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new PayloadTooLargeException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 412) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new PreconditionFailedException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 405) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new MethodNotAllowedException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 400) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new BadRequestException(result.Detail, result);
+                        }
+                        else
+                        if (status_ != 200 && status_ != 204)
+                        {
+                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException($"HTTP response status code {status_} was not expected", responseData_);
+                        }
+            
+                        return default(RefreshCommandResponse);
+                    }
+                }
+            }
+            catch (System.Exception exception_)
+            {
+                throw exception_;
+            }
+        }
+    
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task TestAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetUserQueryResponse> GetUserAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/Users");
-
+            urlBuilder_.Append("api/users");
+    
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
-
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+    
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
+    
                     using (var response_ = await _httpClient.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false))
                     {
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
+                        if (status_ == 200) 
                         {
-                            return;
+                            var result = await ReadContentAsync<GetUserQueryResponse>(response_.Content).ConfigureAwait(false);
+                            return result;
                         }
                         else
-                        if (status_ == 401)
+                        if (status_ == 404) 
+                        {
+                            var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
+                            throw new NotFoundException(result.Detail, result);
+                        }
+                        else
+                        if (status_ == 401) 
                         {
                             var apiProblemDetails = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new AuthenticationException(apiProblemDetails.Detail, apiProblemDetails);
                         }
                         else
-                        if (status_ == 504)
+                        if (status_ == 504) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new GatewayTimeoutException(result.Detail, result);
                         }
                         else
-                        if (status_ == 503)
+                        if (status_ == 503) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new ServiceUnavailableException(result.Detail, result);
                         }
                         else
-                        if (status_ == 502)
+                        if (status_ == 502) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new BadGatewayException(result.Detail, result);
                         }
                         else
-                        if (status_ == 501)
+                        if (status_ == 501) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new ApiException(result.Detail, result);
                         }
                         else
-                        if (status_ == 500)
+                        if (status_ == 500) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new ApiException(result.Detail, result);
                         }
                         else
-                        if (status_ == 415)
+                        if (status_ == 415) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new UnsupportedMediaTypeException(result.Detail, result);
                         }
                         else
-                        if (status_ == 413)
+                        if (status_ == 413) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new PayloadTooLargeException(result.Detail, result);
                         }
                         else
-                        if (status_ == 412)
+                        if (status_ == 412) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new PreconditionFailedException(result.Detail, result);
                         }
                         else
-                        if (status_ == 405)
+                        if (status_ == 405) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new MethodNotAllowedException(result.Detail, result);
                         }
                         else
-                        if (status_ == 400)
+                        if (status_ == 400) 
                         {
                             var result = await ReadContentAsync<ApiProblemDetails>(response_.Content).ConfigureAwait(false);
                             throw new BadRequestException(result.Detail, result);
@@ -475,6 +691,8 @@ namespace Server.Infrastructure.Services.OAuthService
                             var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException($"HTTP response status code {status_} was not expected", responseData_);
                         }
+            
+                        return default(GetUserQueryResponse);
                     }
                 }
             }
@@ -483,7 +701,7 @@ namespace Server.Infrastructure.Services.OAuthService
                 throw exception_;
             }
         }
-
+    
         private async System.Threading.Tasks.Task<TObject> ReadContentAsync<TObject>(System.Net.Http.HttpContent content)
         {
             using (var stream = await content.ReadAsStreamAsync().ConfigureAwait(false))
@@ -500,7 +718,7 @@ namespace Server.Infrastructure.Services.OAuthService
                 }
             }
         }
-
+    
         private string ConvertToString(object value, System.Globalization.CultureInfo cultureInfo)
         {
             if (value is System.Enum)
@@ -511,7 +729,7 @@ namespace Server.Infrastructure.Services.OAuthService
                     var field = System.Reflection.IntrospectionExtensions.GetTypeInfo(value.GetType()).GetDeclaredField(name);
                     if (field != null)
                     {
-                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute(field, typeof(System.Runtime.Serialization.EnumMemberAttribute))
+                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute(field, typeof(System.Runtime.Serialization.EnumMemberAttribute)) 
                             as System.Runtime.Serialization.EnumMemberAttribute;
                         if (attribute != null)
                         {
@@ -520,227 +738,214 @@ namespace Server.Infrastructure.Services.OAuthService
                     }
                 }
             }
-            else if (value is bool)
-            {
+            else if (value is bool) {
                 return System.Convert.ToString(value, cultureInfo).ToLowerInvariant();
             }
             else if (value is byte[])
             {
-                return System.Convert.ToBase64String((byte[])value);
+                return System.Convert.ToBase64String((byte[]) value);
             }
             else if (value != null && value.GetType().IsArray)
             {
-                var array = System.Linq.Enumerable.OfType<object>((System.Array)value);
+                var array = System.Linq.Enumerable.OfType<object>((System.Array) value);
                 return string.Join(",", System.Linq.Enumerable.Select(array, o => ConvertToString(o, cultureInfo)));
             }
-
+        
             return System.Convert.ToString(value, cultureInfo);
         }
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
-    public enum UserType
-    {
-        _1 = 1,
-
-        _2 = 2,
-
-        _3 = 3,
-
-        _4 = 4,
-
-        _5 = 5,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class SignUpCommand
+    public partial class AuthentificationCommand 
     {
         [Newtonsoft.Json.JsonProperty("username", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Username { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("firstName", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string FirstName { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("lastName", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string LastName { get; set; }
-
+    
         [Newtonsoft.Json.JsonProperty("password", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Password { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Email { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Always)]
-        public UserType Type { get; set; }
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-
+    
+    
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class Object
+    public partial class AuthentificationCommandResponse 
     {
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-
+        [Newtonsoft.Json.JsonProperty("accessToken", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string AccessToken { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("refreshToken", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string RefreshToken { get; set; }
+    
+    
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class ApiProblemDetails
+    public partial class ApiProblemDetails 
     {
         [Newtonsoft.Json.JsonProperty("traceId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string TraceId { get; set; }
-
+    
         [Newtonsoft.Json.JsonProperty("errors", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.IDictionary<string, System.Collections.Generic.IReadOnlyList<string>> Errors { get; set; }
-
+    
         [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Type { get; set; }
-
+    
         [Newtonsoft.Json.JsonProperty("title", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Title { get; set; }
-
+    
         [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? Status { get; set; }
-
+    
         [Newtonsoft.Json.JsonProperty("detail", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Detail { get; set; }
-
+    
         [Newtonsoft.Json.JsonProperty("instance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Instance { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("extensions", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.IDictionary<string, Object> Extensions { get; set; }
-
+    
         private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
+    
         [Newtonsoft.Json.JsonExtensionData]
         public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
         {
             get { return _additionalProperties; }
             set { _additionalProperties = value; }
         }
-
-
+    
+    
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class SignInCommand
+    public partial class SignInCommand 
     {
         [Newtonsoft.Json.JsonProperty("username", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Username { get; set; }
-
+    
         [Newtonsoft.Json.JsonProperty("password", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string Password { get; set; }
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-
+    
+    
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class SignInCommandResponse
+    public enum UserType
+    {
+        [System.Runtime.Serialization.EnumMember(Value = @"Person")]
+        Person = 0,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"Company")]
+        Company = 1,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"ExternalChannel")]
+        ExternalChannel = 2,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"CompanyMember")]
+        CompanyMember = 3,
+    
+        [System.Runtime.Serialization.EnumMember(Value = @"Admin")]
+        Admin = 4,
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
+    public partial class SignUpCommand 
+    {
+        [Newtonsoft.Json.JsonProperty("username", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Username { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("firstName", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string FirstName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("lastName", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string LastName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("password", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Password { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Email { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public UserType Type { get; set; }
+    
+    
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
+    public partial class RefreshCommand 
     {
         [Newtonsoft.Json.JsonProperty("accessToken", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string AccessToken { get; set; }
-
+    
         [Newtonsoft.Json.JsonProperty("refreshToken", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string RefreshToken { get; set; }
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-
+    
+    
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class RefreshAccessTokenCommand
+    public partial class RefreshCommandResponse 
     {
         [Newtonsoft.Json.JsonProperty("accessToken", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string AccessToken { get; set; }
-
+    
         [Newtonsoft.Json.JsonProperty("refreshToken", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public string RefreshToken { get; set; }
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-
+    
+    
     }
-
+    
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.1.4.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class RefreshAccessTokenCommandResponse
+    public partial class GetUserQueryResponse 
     {
-        [Newtonsoft.Json.JsonProperty("accessToken", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("userId", Required = Newtonsoft.Json.Required.Always)]
+        public int UserId { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("username", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string AccessToken { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("refreshToken", Required = Newtonsoft.Json.Required.Always)]
+        public string Username { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("firstName", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string RefreshToken { get; set; }
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties = new System.Collections.Generic.Dictionary<string, object>();
-
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties; }
-            set { _additionalProperties = value; }
-        }
-
-
+        public string FirstName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("lastName", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string LastName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("email", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Email { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("type", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
+        public UserType Type { get; set; }
+    
+    
     }
 
 }
 
 #pragma warning restore 1591
 #pragma warning restore 1573
-#pragma warning restore 472
-#pragma warning restore 114
-#pragma warning restore 108
+#pragma warning restore  472
+#pragma warning restore  114
+#pragma warning restore  108
