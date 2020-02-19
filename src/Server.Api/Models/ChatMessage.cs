@@ -1,6 +1,5 @@
 ﻿using Server.Api.Models.Enum;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace Server.Api.Models
 {
@@ -10,11 +9,12 @@ namespace Server.Api.Models
         public int ChatRoomId { get; set; }
 
         [Required]
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
         [Required]
         public string Text { get; set; }
 
+        [Required]
         public ChatMessageType Type { get; set; }
     }
 }
