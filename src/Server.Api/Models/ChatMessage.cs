@@ -15,7 +15,6 @@ namespace Server.Api.Models
         [Required]
         public string Text { get; set; }
 
-        [JsonConverter(typeof(JsonStringEnumConverter))]
         public ChatMessageType Type { get; set; }
     }
 }
