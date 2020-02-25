@@ -4,7 +4,7 @@
 |---|---|
 | master  |  [![Build Status](https://travis-ci.org/OmniChannelChatBot/Server.svg?branch=master)](https://travis-ci.org/OmniChannelChatBot/Server) |
 
-## NSwag Configuration for c# cliet generation
+## NSwag Configuration for c# cliet generation (NSwagStudio version 13.2.3.0)
 - Namespace - Server.Infrastructure.Services.DBApiService
 - Additinal Namespace usage (comma separated) - Microsoft.Extensions.Options,Server.Core.Options,OCCBPackage.Exceptions
 - Exception Class Name - ApiExeption
