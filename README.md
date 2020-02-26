@@ -5,10 +5,7 @@
 | master  |  [![Build Status](https://travis-ci.org/OmniChannelChatBot/Server.svg?branch=master)](https://travis-ci.org/OmniChannelChatBot/Server) |
 
 ## NSwag Configuration for c# cliet generation (NSwagStudio version 13.2.3.0)
-- Namespace - Server.Infrastructure.Services.DBApiService
-- Additinal Namespace usage (comma separated) - Microsoft.Extensions.Options,Server.Core.Options,OCCBPackage.Exceptions
-- Exception Class Name - ApiExeption
-- Generate Interfaces for clients - yes
+- use https://github.com/OmniChannelChatBot/Server/blob/master/nswag/db-api-schema.nswag or https://github.com/OmniChannelChatBot/Server/blob/master/nswag/oauth-schema.nswag for client generation
 
 ## useful nuget packages & api links
 # must have
