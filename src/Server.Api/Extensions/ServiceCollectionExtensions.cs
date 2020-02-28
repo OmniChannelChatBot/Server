@@ -10,7 +10,7 @@ namespace Server.Api.Extensions
 {
     internal static class ServiceCollectionExtension
     {
-        private static readonly string _namespaceApplication = $"{nameof(Server)}.{nameof(Api)}.{nameof(Application)}";
+        private static readonly string _namespaceApplication = $"{nameof(Server)}.{nameof(Api)}";
 
         public static void AddApplicationServices(this IServiceCollection services, Action<DBApiOptions> options) => services
             .Configure(options)
