@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OCCBPackage.Extensions;
+using OCCBPackage.Middlewares;
 using OCCBPackage.Options;
 using OCCBPackage.Swagger.OperationFilters;
 using Server.Api.Extensions;
 using Server.Api.Hubs;
-using Server.Api.Middlewares;
 using Server.Core.Options;
 using System;
 
