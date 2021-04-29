@@ -1,0 +1,16 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: VkNet
+    versions:
+    - 1.59.0
+    - 1.60.0
+    - 1.61.0
+  - dependency-name: AutoMapper.Extensions.Microsoft.DependencyInjection
+    versions:
+    - 8.1.0
